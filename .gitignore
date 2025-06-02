@@ -46,3 +46,7 @@ package-lock.json
 packages/*/yarn.lock
 packages/*/package-lock.json
 .vercel
+
+create_wallets.js
+call_contract.js
+wallets.json
