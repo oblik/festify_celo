@@ -17,8 +17,7 @@ const config: HardhatUserConfig = {
     },
     lisk: {
       url: 'https://rpc.api.lisk.com',
-      accounts: [process.env.WALLET_KEY as string],
-      gasPrice: 1000000000,
+      accounts: [process.env.PRIVATE_KEY ?? '0x0']
     },
   },
   etherscan: {
