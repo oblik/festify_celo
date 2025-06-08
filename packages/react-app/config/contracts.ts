@@ -7,6 +7,7 @@ export const CONTRACT_ADDRESSES: Record<number, string> = {
   // Optimism Mainnet
   10: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_OPTIMISM || "",
   // Optimism Goerli Testnet
-  420: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_OPTIMISM_GOERLI || ""
-
-  };
+  420: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_OPTIMISM_GOERLI || "",
+  // Lisk Mainnet
+  1135: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS_LISK || "0xEbc79539af49e1Ee8fE7Ee8721bcA293441ED058",
+};
