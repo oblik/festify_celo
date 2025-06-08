@@ -30,7 +30,7 @@ contract FestivalGreetings is ERC721URIStorage, ERC721Enumerable, Ownable {
     mapping(address => uint256[]) private _receivedTokens;
 
     // Optional: Fee for minting a greeting card (can be set to 0)
-    uint256 public mintFee = 0.01 ether;
+    uint256 public mintFee = 0;
 
     // Events
     event GreetingCardMinted(
