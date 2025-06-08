@@ -251,7 +251,7 @@ export const useFestify = () => {
       // Get Divvi data suffix for referral tracking
       const dataSuffix = getDataSuffix({
         consumer: '0x4eA48e01F1314Db0925653e30617B254D1cf5366', // Your Divvi Identifier
-        providers: ['0x0423189886d7966f0dd7e7d256898daeee625dca','0xc95876688026be9d6fa7a7c33328bd013effa2bb','0x5f0a55fad9424ac99429f635dfb9bf20c3360ab8'],
+        providers: ['0x0423189886d7966f0dd7e7d256898daeee625dca','0xc95876688026be9d6fa7a7c33328bd013effa2bb','0x7beb0e14f8d2e6f6678cc30d867787b384b19e20'],
       });
 
       // First prepare the contract call

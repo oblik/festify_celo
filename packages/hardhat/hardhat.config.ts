@@ -15,6 +15,11 @@ const config: HardhatUserConfig = {
       accounts: [process.env.PRIVATE_KEY ?? '0x0'],
       url: 'https://forno.celo.org',
     },
+    lisk: {
+      url: 'https://rpc.api.lisk.com',
+      accounts: [process.env.WALLET_KEY as string],
+      gasPrice: 1000000000,
+    },
   },
   etherscan: {
     apiKey: {
