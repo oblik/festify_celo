@@ -2,6 +2,7 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
+import { sdk } from "@farcaster/frame-sdk";
 import { useFestify } from "@/contexts/useFestify";
 import { Container } from "@/components/ui/container";
 import MintGreetingForm from "@/components/MintGreetingForm";
@@ -27,6 +28,7 @@ export default function Home() {
 
     useEffect(() => {
         setIsClient(true);
+        sdk.actions.ready();
     }, []);
 
     useEffect(() => {

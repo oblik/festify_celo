@@ -1,0 +1,19 @@
+{
+    "accountAssociation": {
+      "header": "eyJmaWQiOjg0NjY4NSwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDdkMDhkODRBQjA5RTk4MDVkNDBjNDU1RDIxMzE3OWVCRjczNTAwMTIifQ",
+      "payload": "eyJkb21haW4iOiJmZXN0aWZ5LnZlcmNlbC5hcHAifQ",
+      "signature": "MHg2MDk3NTY0NDYyYWNkODY1MmIxNWM3YmMxODUzYmEwNDZhOTA0OGQxNjU2MDE2N2MyMzdmZTc0NjM0NGVmYzI4NmZlMTk5NzIxYjhkYjJhNjlkNjhkMjJjMDJmMTlmMzU2Njc2ODk1ZmFlZjEzZjQ3NGI5ZDRkOWUxNmE5ZDMwZTFj"
+    },
+    "frame": {
+      "version": "1",
+      "name": "Example Frame",
+      "iconUrl": "https://festify.vercel.app/icon.png",
+      "homeUrl": "https://festify.vercel.app",
+      "imageUrl": "https://festify.vercel.app/image.png",
+      "buttonTitle": "Check this out",
+      "splashImageUrl": "https://festify.vercel.app/splash.png",
+      "splashBackgroundColor": "#eeccff",
+      "webhookUrl": "https://festify.vercel.app/api/webhook"
+    }
+}
+  
