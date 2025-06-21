@@ -15,7 +15,7 @@
       "splashBackgroundColor": "#eeccff",
       "webhookUrl": "https://festify.vercel.app/api/webhook",
       "subtitle": "NFT Greeting Cards",
-      "description": "Create and send personalized festival greeting cards as NFTs to your loved ones. Built by @aliveevie.",
+      "description": "Create and send personalized festival greeting cards as NFTs to your loved ones.",
       "screenshotUrls": [
         "https://festify.vercel.app/screenshot1.png"
       ],
