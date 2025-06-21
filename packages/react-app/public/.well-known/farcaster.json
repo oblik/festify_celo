@@ -6,12 +6,12 @@
     },
     "frame": {
       "version": "1",
-      "name": "Example Frame",
-      "iconUrl": "https://festify.vercel.app/icon.png",
+      "name": "Festify",
+      "iconUrl": "https://imgur.com/10fnTuK",
       "homeUrl": "https://festify.vercel.app",
-      "imageUrl": "https://festify.vercel.app/image.png",
+      "imageUrl": "https://imgur.com/a/zwcgGvL",
       "buttonTitle": "Check this out",
-      "splashImageUrl": "https://festify.vercel.app/splash.png",
+      "splashImageUrl": "https://imgur.com/a/zwcgGvL",
       "splashBackgroundColor": "#eeccff",
       "webhookUrl": "https://festify.vercel.app/api/webhook",
       "subtitle": "NFT Greeting Cards",
@@ -22,4 +22,3 @@
       "primaryCategory": "art-creativity"
     }
 }
-  
