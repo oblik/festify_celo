@@ -10,6 +10,8 @@ import {
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { celo, alfajores, optimism, optimismGoerli, allChains } from '../providers/chains';
 import { type Chain } from 'viem';
+import { farcasterFrame as miniAppConnector } from '@farcaster/frame-wagmi-connector'
+
 
 import Layout from '../components/Layout';
 import { injectedWallet } from '@rainbow-me/rainbowkit/wallets';
@@ -32,7 +34,7 @@ const connectors = connectorsForWallets(
 const chains = [celo, ...allChains.filter(chain => chain.id !== celo.id)] as [Chain, ...Chain[]];
 
 const config = createConfig({
-  connectors,
+  connectors: [miniAppConnector()],
   chains,
   transports: {
     [celo.id]: http(),
