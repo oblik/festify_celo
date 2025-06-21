@@ -50,3 +50,14 @@ packages/*/package-lock.json
 create_wallets.js
 call_contract.js
 wallets.json
+normal.js
+data.js
+cascading_greetings.js
+database_backup.json
+test_cascading.js
+getBalance.js
+phases.json
+generate_phases.js
+funded_wallet.json
+
+Testing_call
