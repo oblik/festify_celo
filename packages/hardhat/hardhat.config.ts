@@ -19,11 +19,16 @@ const config: HardhatUserConfig = {
       url: 'https://rpc.api.lisk.com',
       accounts: [process.env.PRIVATE_KEY ?? '0x0']
     },
+    base: {
+      url: 'https://mainnet.base.org',
+      accounts: [process.env.BASE_PRIVATE_KEY ?? '0x0'],
+    },
   },
   etherscan: {
     apiKey: {
       alfajores: process.env.CELOSCAN_API_KEY ?? '',
       celo: process.env.CELOSCAN_API_KEY ?? '',
+      base: process.env.BASESCAN_API_KEY ?? '',
     },
     customChains: [
       {
@@ -40,6 +45,14 @@ const config: HardhatUserConfig = {
         urls: {
           apiURL: 'https://api.celoscan.io/api',
           browserURL: 'https://celoscan.io/',
+        },
+      },
+      {
+        network: 'base',
+        chainId: 8453,
+        urls: {
+          apiURL: 'https://api.basescan.org/api',
+          browserURL: 'https://basescan.org',
         },
       },
     ],

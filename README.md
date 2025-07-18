@@ -65,6 +65,14 @@ The application will be available at `http://localhost:3000`.
 5. Mint your greeting card NFT
 6. The recipient will receive the NFT in their wallet
 
+
+
+### Important Notes
+- **Private Keys**: Use valid hex private keys (0x... format) for distribution scripts
+- **Network**: Scripts support both Celo and Lisk networks
+- **Amounts**: Specify amounts in the native currency (CELO or ETH for Lisk)
+- **Directory**: Always run scripts from `Testing_call/server` directory
+
 ## Smart Contract 📝
 
 The Festify smart contract (`FestivalGreetings.sol`) implements:
