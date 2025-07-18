@@ -7,21 +7,24 @@ dotEnvConfig();
 
 const config: HardhatUserConfig = {
   networks: {
+    hardhat: {
+      // Use default hardhat network for testing
+    },
     alfajores: {
-      accounts: [process.env.PRIVATE_KEY ?? '0x0'],
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       url: 'https://alfajores-forno.celo-testnet.org',
     },
     celo: {
-      accounts: [process.env.PRIVATE_KEY ?? '0x0'],
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       url: 'https://forno.celo.org',
     },
     lisk: {
       url: 'https://rpc.api.lisk.com',
-      accounts: [process.env.PRIVATE_KEY ?? '0x0']
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
     },
     base: {
       url: 'https://mainnet.base.org',
-      accounts: [process.env.BASE_PRIVATE_KEY ?? '0x0'],
+      accounts: process.env.BASE_PRIVATE_KEY ? [process.env.BASE_PRIVATE_KEY] : [],
     },
   },
   etherscan: {
