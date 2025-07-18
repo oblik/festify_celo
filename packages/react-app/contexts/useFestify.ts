@@ -4,11 +4,9 @@ import {
   createPublicClient,
   createWalletClient,
   custom,
-  getContract,
   http,
   parseEther,
   PublicClient,
-  GetContractReturnType,
   Chain,
   encodeFunctionData,
 } from "viem";
@@ -18,7 +16,7 @@ import { generateGreetingCardSVG } from "../utils/cardGenerator";
 import { utf8ToBase64, parseBase64Metadata } from "../utils/base64Utils";
 import { CONTRACT_ADDRESSES } from "../config/contracts";
 import { initializeWeb3Storage, createAndUploadMetadata } from "../utils/web3Storage";
-import { getDataSuffix, submitReferral } from '@divvi/referral-sdk';
+// Divvi referral SDK removed for compatibility
 
 // Define supported networks
 export const SUPPORTED_NETWORKS = {
@@ -31,7 +29,7 @@ export const SUPPORTED_NETWORKS = {
 type SupportedChainId = typeof SUPPORTED_NETWORKS[keyof typeof SUPPORTED_NETWORKS];
 
 // Type for our contract
-type FestifyContract = GetContractReturnType<typeof FestifyABI.abi, PublicClient>;
+type FestifyContract = any; // Simplified for now
 
 export const useFestify = () => {
   const { address, isConnected } = useAccount();
@@ -83,16 +81,15 @@ export const useFestify = () => {
         return;
       }
 
-      const contract = getContract({
-        address: contractAddress as `0x${string}`,
-        abi: FestifyABI.abi,
-        client: publicClient,
-      });
-
       // Sent
       let sentTokensResult: bigint[] = [];
       try {
-        const result = await contract.read.getSentGreetings([address as `0x${string}`]);
+        const result = await publicClient.readContract({
+          address: contractAddress as `0x${string}`,
+          abi: FestifyABI.abi,
+          functionName: 'getSentGreetings',
+          args: [address as `0x${string}`]
+        });
         if (Array.isArray(result)) {
           sentTokensResult = result as bigint[];
           console.log("Sent greetings found:", sentTokensResult.length);
@@ -105,7 +102,12 @@ export const useFestify = () => {
       // Received
       let receivedTokensResult: bigint[] = [];
       try {
-        const result = await contract.read.getReceivedGreetings([address as `0x${string}`]);
+        const result = await publicClient.readContract({
+          address: contractAddress as `0x${string}`,
+          abi: FestifyABI.abi,
+          functionName: 'getReceivedGreetings',
+          args: [address as `0x${string}`]
+        });
         if (Array.isArray(result)) {
           receivedTokensResult = result as bigint[];
           console.log("Received greetings found:", receivedTokensResult.length);
@@ -120,9 +122,24 @@ export const useFestify = () => {
         sentTokensResult.map(async (tokenId) => {
           try {
             const [tokenURI, festival, recipient] = await Promise.all([
-              contract.read.tokenURI([tokenId]),
-              contract.read.getGreetingFestival([tokenId]),
-              contract.read.ownerOf([tokenId])
+              publicClient.readContract({
+                address: contractAddress as `0x${string}`,
+                abi: FestifyABI.abi,
+                functionName: 'tokenURI',
+                args: [tokenId]
+              }),
+              publicClient.readContract({
+                address: contractAddress as `0x${string}`,
+                abi: FestifyABI.abi,
+                functionName: 'getGreetingFestival',
+                args: [tokenId]
+              }),
+              publicClient.readContract({
+                address: contractAddress as `0x${string}`,
+                abi: FestifyABI.abi,
+                functionName: 'ownerOf',
+                args: [tokenId]
+              })
             ]);
 
             const metadata = parseBase64Metadata(tokenURI as string);
@@ -145,9 +162,24 @@ export const useFestify = () => {
         receivedTokensResult.map(async (tokenId) => {
           try {
             const [tokenURI, festival, sender] = await Promise.all([
-              contract.read.tokenURI([tokenId]),
-              contract.read.getGreetingFestival([tokenId]),
-              contract.read.getGreetingSender([tokenId])
+              publicClient.readContract({
+                address: contractAddress as `0x${string}`,
+                abi: FestifyABI.abi,
+                functionName: 'tokenURI',
+                args: [tokenId]
+              }),
+              publicClient.readContract({
+                address: contractAddress as `0x${string}`,
+                abi: FestifyABI.abi,
+                functionName: 'getGreetingFestival',
+                args: [tokenId]
+              }),
+              publicClient.readContract({
+                address: contractAddress as `0x${string}`,
+                abi: FestifyABI.abi,
+                functionName: 'getGreetingSender',
+                args: [tokenId]
+              })
             ]);
 
             const metadata = parseBase64Metadata(tokenURI as string);
@@ -248,37 +280,20 @@ export const useFestify = () => {
       const mintFee = parseEther("0.01");
       const formattedAddress = address as `0x${string}`;
 
-      // Get Divvi data suffix for referral tracking
-      const dataSuffix = getDataSuffix({
-        consumer: '0x4eA48e01F1314Db0925653e30617B254D1cf5366', // Your Divvi Identifier
-        providers: ['0x0423189886d7966f0dd7e7d256898daeee625dca','0xc95876688026be9d6fa7a7c33328bd013effa2bb','0x7beb0e14f8d2e6f6678cc30d867787b384b19e20'],
-      });
-
-      // First prepare the contract call
-      const contract = getContract({
-        address: contractAddress as `0x${string}`,
-        abi: FestifyABI.abi,
-        client: walletClient,
-      });
+      // Note: Divvi referral tracking removed for compatibility
 
       // Execute transaction with Divvi data suffix
-      const tx = await contract.write.mintGreetingCard(
-        [recipient as `0x${string}`, metadataUri, festival],
-        {
-          account: formattedAddress,
-          value: mintFee,
-          dataSuffix,
-        }
-      );
+      const tx = await walletClient.writeContract({
+        address: contractAddress as `0x${string}`,
+        abi: FestifyABI.abi,
+        functionName: 'mintGreetingCard',
+        args: [recipient as `0x${string}`, metadataUri, festival],
+        account: formattedAddress,
+        value: mintFee,
+      });
 
       if (!publicClient) throw new Error("Failed to initialize public client");
       const receipt = await publicClient.waitForTransactionReceipt({ hash: tx });
-      
-      // Submit referral to Divvi
-      await submitReferral({
-        txHash: tx,
-        chainId,
-      });
       
       // Refresh the greetings list after minting
       await refreshGreetings();
