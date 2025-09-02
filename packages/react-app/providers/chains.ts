@@ -94,12 +94,57 @@ export const optimismGoerli = defineChain({
   testnet: true,
 });
 
+// Lisk Mainnet
+export const lisk = defineChain({
+  id: 1135,
+  name: 'Lisk Mainnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Ether',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://rpc.api.lisk.com'],
+    },
+    public: {
+      http: ['https://rpc.api.lisk.com'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'Lisk Explorer', url: 'https://explorer.lisk.com' },
+  },
+});
+
+// Base Mainnet
+export const base = defineChain({
+  id: 8453,
+  name: 'Base',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Ether',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://mainnet.base.org'],
+    },
+    public: {
+      http: ['https://mainnet.base.org'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'Base Explorer', url: 'https://basescan.org' },
+    etherscan: { name: 'Base Etherscan', url: 'https://basescan.org' },
+  },
+});
+
 // Export all chains as an array for easy access
 export const allChains = [
   celo,
-  alfajores,
   optimism,
-  optimismGoerli
+  lisk,
+  base
 ];
 
 // Helper function to get chain by ID

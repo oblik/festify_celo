@@ -20,5 +20,8 @@
         "https://festify.vercel.app/screenshot1.png"
       ],
       "primaryCategory": "art-creativity"
+    },
+    "baseBuilder": {
+      "allowedAddresses": ["0x72310746efeCffc6c552475Ba28836859AcE4d7d"]
     }
 }

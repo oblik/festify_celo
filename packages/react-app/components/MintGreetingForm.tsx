@@ -196,9 +196,9 @@ const MintGreetingForm: React.FC = () => {
       <h3 className="text-sm font-medium text-yellow-800">Supported Networks:</h3>
       <ul className="mt-2 text-sm text-yellow-700">
         <li>• Celo Mainnet</li>
-        <li>• Celo Alfajores Testnet</li>
+        <li>• Lisk Mainnet</li>
+        <li>• Base Mainnet</li>
         <li>• Optimism Mainnet</li>
-        <li>• Optimism Goerli Testnet</li>
       </ul>
     </div>
   );
@@ -217,9 +217,9 @@ const MintGreetingForm: React.FC = () => {
           </p>
           <ul className="mt-2 text-sm text-yellow-700 list-disc list-inside">
             <li>Celo Mainnet</li>
-            <li>Celo Alfajores Testnet</li>
+            <li>Lisk Mainnet</li>
+            <li>Base Mainnet</li>
             <li>Optimism</li>
-            <li>Optimism Goerli Testnet</li>
           </ul>
         </div>
       );
